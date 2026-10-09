@@ -1,0 +1,31 @@
+name: "1er Parcial: Integracion continua de Surge.sh y Github Actions"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar código fuente
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Forzamos una instalación local limpia del paquete de surge
+      - name: Instalar Surge.sh
+        run: npm install surge
+
+      # Ejecutamos usando variables de entorno nativas (env:) para evitar bloqueos
+      - name: Desplegar en Surge.sh
+        run: npx surge ./ lichiwu727-primer-parcial-surge.sh.surge.sh
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
