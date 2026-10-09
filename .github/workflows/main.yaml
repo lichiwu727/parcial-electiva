@@ -25,7 +25,7 @@ jobs:
 
       # Ejecutamos usando variables de entorno nativas (env:) para evitar bloqueos
       - name: Desplegar en Surge.sh
-        run: npx surge ./ lichiwu727-primer-parcial-surge.sh.surge.sh
+        run: npx surge ./ lichiwu727-parcial-electiva.surge.sh
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
